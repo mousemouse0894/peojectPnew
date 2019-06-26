@@ -6,9 +6,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-content padding style="background-color: rgb(218, 218, 218)">
+  <button ion-button full (click)="onOpencamera()">กล้องถ่ายรูป</button> <br />
+  <button ion-button full (click)="onOpengallery()">คลังรูปภาพ</button> <br />
+
+  <ion-card>
+    <ion-card-content style="padding: 0px">
+      <ion-item>
+        <ion-label floating>กรอกป้ายทะเบียน</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <br />
+  <div style="text-align: center">
+    <button ion-button color="secondary" (click)="onBack()">ตกลง</button>
   </div>
+  <hr />
+  <div *ngIf="imageSelect">
+    <button
+      ion-button
+      color="danger"
+      (click)="imageSelect = null; imageProcess = null"
+    >
+      ลบ
+    </button>
+    <img src="{{ 'data:image/jpeg;base64,' }}{{ imageSelect }}" />
+    <hr />
+  </div>
+  <div *ngIf="imageProcess">{{ imageProcess | json }}</div>
+  <ion-button color="dark">Dark</ion-button>
 </ion-content>
